@@ -39,20 +39,23 @@ namespace MatrixTools
 
         public static Matrix<T> Add(Matrix<T> A, Matrix<T> B)
         {
-            if (A.rows != B.rows || A.columns != B.columns)
+            if (A.rows == B.rows || A.columns == B.columns)
             {
-                throw new ArgumentException("Matrices must have the same dimensions to add.");
+                Matrix<T> result = new Matrix<T>(A.rows, A.columns);
+                for (int i = 0; i < A.rows; i++)
+                {
+                    for (int j = 0; j < A.columns; j++)
+                    {
+                        result.data[i, j] = (dynamic)A.data[i, j] + (dynamic)B.data[i, j];
+                    }
+                }
+                return result;
+            }
+            else
+            {
+                return null;
             }
 
-            Matrix<T> result = new Matrix<T>(A.rows, A.columns);
-            for (int i = 0; i < A.rows; i++)
-            {
-                for (int j = 0; j < A.columns; j++)
-                {
-                    result.data[i, j] = (dynamic)A.data[i, j] + (dynamic)B.data[i, j];
-                }
-            }
-            return result;
         }
 
         public void RotateX()
