@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MatrixTools
-{
-    public class Matrix<T> where T : struct
+{ 
+    public class Matrix<T>
     {
         private T[,] data;
         private int rows;
